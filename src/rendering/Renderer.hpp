@@ -24,5 +24,4 @@ class Renderer {
         void SetCamera(Cam& camera);
 
         bool IsRunning();
-        
 };
