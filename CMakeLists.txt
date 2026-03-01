@@ -16,8 +16,8 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(raylib)
 
-file(GLOB_RECURSE GAME_SOURCES CONFIGURE_DEPENDS src/*.cpp)
+file(GLOB_RECURSE _SOURCES CONFIGURE_DEPENDS src/*.cpp)
 
-add_executable(PlanetSim src/main.cpp)
+add_executable(PlanetSim ${_SOURCES})
 
 target_link_libraries(PlanetSim raylib)
