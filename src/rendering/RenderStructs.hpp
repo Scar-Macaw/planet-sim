@@ -1,12 +1,7 @@
 #pragma once
 #include <vector>
 
-//Vector 3 for rendering
-struct Vec3R {
-    float x, y, z;
-};
-
-//Vector 2 with integers
+//Vector 2 with integers for screen positions
 struct Vec2i {
     int x, y;
 };
@@ -17,9 +12,9 @@ struct RenderModel {
 };
 
 //Camera
-struct Cam {
+/*struct Cam {
     Vec3R position;
     Vec3R target;
     Vec3R up;
     float fov;
-};
+};*/
