@@ -1,5 +1,5 @@
 #pragma once
-#include "RenderStructs.hpp"
+#include "render_structs.hpp"
 #include <string>
 #include <unordered_map>
 

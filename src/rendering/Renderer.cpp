@@ -1,4 +1,4 @@
-#include "Renderer.hpp"
+#include "renderer.hpp"
 #include "raylib.h"
 
 std::unordered_map<int, Model> models = {};
