@@ -1,22 +1,13 @@
 //https://austinmorlan.com/posts/entity_component_system/#what-is-an-ecs
 //Good reading material and ECS tutorial
 
-#include <cstdint>
-#include <bitset>
+#include "ecs_definitions.cpp"
 #include <array>
 #include <queue>
 
-using Entity = std::uint32_t;
-const Entity MAX_ENTITIES = 5000;
-
-using ComponentType = std::uint8_t;
-const ComponentType MAX_COMPONENTS = 32;
-
-using Signature = std::bitset<MAX_COMPONENTS>;
-
-class Registry {
+class EntityManager {
 public:
-    Registry();
+    EntityManager();
 
     Entity CreateEntity();
     void   RemoveEntity(Entity e);

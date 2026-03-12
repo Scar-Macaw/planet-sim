@@ -1,12 +1,12 @@
-#include <registry.hpp>
+#include "entity_manager.hpp"
 
-Registry::Registry(){
+EntityManager::EntityManager(){
     for(Entity e = 0; e < MAX_ENTITIES; e++){
         avaliableEntities.push(e);
     }
 }
 
-Entity Registry::CreateEntity(){
+Entity EntityManager::CreateEntity(){
 
     Entity e = avaliableEntities.front();
     avaliableEntities.pop();
@@ -15,7 +15,7 @@ Entity Registry::CreateEntity(){
     return e;
 }
 
-void Registry::RemoveEntity(Entity e){
+void EntityManager::RemoveEntity(Entity e){
 
     signatures[e].reset();
 
@@ -23,10 +23,10 @@ void Registry::RemoveEntity(Entity e){
     --entity_count;
 }
 
-void Registry::SetSignature(Entity e, Signature s){
+void EntityManager::SetSignature(Entity e, Signature s){
     signatures[e] = s;
 }
 
-Signature Registry::GetSignature(Entity e){
+Signature EntityManager::GetSignature(Entity e){
     return signatures[e];
 }

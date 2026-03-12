@@ -1,4 +1,4 @@
-#include <component_array.hpp>
+#include "component_array.hpp"
 
 template <typename T>
 void ComponentArray<T>::InsertData(Entity e, T component){
@@ -11,15 +11,29 @@ void ComponentArray<T>::InsertData(Entity e, T component){
 
 template <typename T>
 void ComponentArray<T>::RemoveData(Entity e){
+    size_t indexOfRemovedEntity = entityToIndexMap[e];
+    size_t indexOfLastElement = component_size - 1;
+    componentArray[indexOfRemovedEntity] = componentArray[indexOfLastElement];
 
+    Entity entityOfLastElement = indexToEntityMap[indexOfLastElement];
+    entityToIndexMap[entityOfLastElement] = indexOfRemovedEntity;
+    indexToEntityMap[indexOfRemovedEntity] = entityOfLastElement;
+
+    entityToIndexMap.erase(e);
+    indexToEntityMap.erase(indexOfLastElement);
+
+    component_size--;
 }
 
 template <typename T>
 T& ComponentArray<T>::GetData(Entity e){
-
+    return componentArray[entityToIndexMap[e]];  
 }
 
 template <typename T>
-void ComponentArray<T>::EntityRemoved() {
-
+void ComponentArray<T>::EntityRemoved(Entity e) {
+    if (entityToIndexMap.find(e) != entityToIndexMap.end())
+		{
+			RemoveData(e);
+		}
 }

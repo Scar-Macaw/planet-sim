@@ -1,4 +1,4 @@
-#include <registry.hpp>
+#include "ecs_definitions.cpp"
 #include <unordered_map>
 
 class IComponentArray {
@@ -13,12 +13,12 @@ public:
     void InsertData(Entity e, T component);
     void RemoveData(Entity e);
     T& GetData(Entity e);
-    void EntityRemoved() override;
+    void EntityRemoved(Entity e) override;
 private:
     std::array<T, MAX_ENTITIES> componentArray;
 
-    std::unordered_map<Entity e, size_t> entityToIndexMap;
-    std::unordered_map<size_t, Entity e> indexToEntityMap;
+    std::unordered_map<Entity, size_t> entityToIndexMap;
+    std::unordered_map<size_t, Entity> indexToEntityMap;
 
     size_t component_size;
 };
