@@ -10,11 +10,3 @@ struct Vec2i {
 struct RenderModel {
     int id = 0;
 };
-
-//Camera
-/*struct Cam {
-    Vec3R position;
-    Vec3R target;
-    Vec3R up;
-    float fov;
-};*/

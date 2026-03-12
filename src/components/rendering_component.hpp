@@ -1,3 +1,4 @@
+#pragma once
 
 //Handles what will be rendered to the screen
 struct RenderingComponent {

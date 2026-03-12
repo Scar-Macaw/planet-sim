@@ -1,7 +1,8 @@
 //https://austinmorlan.com/posts/entity_component_system/#what-is-an-ecs
 //Good reading material and ECS tutorial
+#pragma once
 
-#include "ecs_definitions.cpp"
+#include "ecs_definitions.hpp"
 #include <array>
 #include <queue>
 

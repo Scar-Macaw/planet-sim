@@ -1,3 +1,4 @@
+#pragma once
 
 //Transform (Position and Rotation)
 struct TransformComponent {

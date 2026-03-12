@@ -1,4 +1,6 @@
-#include "ecs_definitions.cpp"
+#pragma once
+
+#include "ecs_definitions.hpp"
 #include <unordered_map>
 
 class IComponentArray {

@@ -1,4 +1,6 @@
-#include "ecs_definitions.cpp"
+#pragma once
+
+#include "ecs_definitions.hpp"
 #include "component_array.hpp"
 #include <memory>
 

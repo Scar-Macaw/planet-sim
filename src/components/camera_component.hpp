@@ -1,3 +1,4 @@
+#pragma once
 
 //For cameras doing the rendering
 struct CameraComponent {

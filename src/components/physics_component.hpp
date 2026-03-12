@@ -1,3 +1,4 @@
+#pragma once
 
 //Physics stuff goes here
 struct PhysicsComponent {

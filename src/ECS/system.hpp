@@ -1,8 +1,9 @@
+#pragma once
+
 #include <set>
-#include "ecs_definitions.cpp"
+#include "ecs_definitions.hpp"
 
 class System {
-
 public:
     std::set<Entity> entities;
 };
