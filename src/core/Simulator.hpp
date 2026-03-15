@@ -4,6 +4,7 @@
 
 #include "../systems/rendering_system.hpp"
 #include "../systems/camera_system.hpp"
+#include "../systems/debug_draw_system.hpp"
 
 class Simulator {
     public:

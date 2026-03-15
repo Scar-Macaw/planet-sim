@@ -1,7 +1,7 @@
 #include "camera_system.hpp"
 #include <iostream>
 
-void CameraSystem::Update(double delta, Coordinator* coordinator)
+void CameraSystem::Update(float delta, Coordinator* coordinator)
 {
     for (auto const& e : entities)
     {

@@ -16,10 +16,15 @@ public:
 
     void Shutdown();
 
-    void Update(double delta, Coordinator* coordinator);
+    void BeginFrame();
+    void EndFrame();
+
+    void Update(float delta, Coordinator* coordinator);
     bool is_running();
 
     void SetActiveCamera(ActiveCamera cam);
+
+    float GetFrameDifference();
 private:
     ActiveCamera current_cam;
 };

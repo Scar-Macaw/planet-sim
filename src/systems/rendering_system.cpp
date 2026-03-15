@@ -2,7 +2,7 @@
 
 void RenderingSystem::Init()
 {
-    SetTargetFPS(60);
+    SetTargetFPS(30);
     InitWindow(800, 600, "Simulation");
 }
 
@@ -11,9 +11,7 @@ void RenderingSystem::Shutdown()
     CloseWindow();
 }
 
-float test = 0.0f;
-
-void RenderingSystem::Update(double delta, Coordinator* coordinator)
+void RenderingSystem::BeginFrame()
 {
     ClearBackground(BLACK);
 
@@ -23,29 +21,35 @@ void RenderingSystem::Update(double delta, Coordinator* coordinator)
     cam.fovy        = current_cam.camera.fovy;
     cam.up          = {0.0f, 1.0f, 0.0f};
     cam.projection  = CAMERA_PERSPECTIVE;
-    
-    test += 0.01f;
 
     BeginDrawing();
+
+    DrawFPS(0, 0);
+
     BeginMode3D(cam);
+}
+
+void RenderingSystem::EndFrame()
+{
+    EndMode3D();
+    EndDrawing();
+}
+
+void RenderingSystem::Update(float delta, Coordinator* coordinator)
+{
 
     for (auto const& e : entities)
     {
         auto& transform = coordinator->GetComponent<TransformComponent>(e);
         auto& render    = coordinator->GetComponent<RenderingComponent>(e);
 
-        transform.x = cos(test) * 10.0f;
-        transform.z = sin(test) * 10.0f;
-
         Vector3 mesh_pos = {transform.x, transform.y, transform.z};
 
-        DrawSphere(mesh_pos, 1, BLUE);
+        DrawSphere(mesh_pos, 0.1f, WHITE);
     }
 
     DrawGrid(20, 2.0f);
 
-    EndMode3D();
-    EndDrawing();
 }
 
 bool RenderingSystem::is_running()
@@ -55,5 +59,10 @@ bool RenderingSystem::is_running()
 
 void RenderingSystem::SetActiveCamera(ActiveCamera cam)
 {
-    current_cam = cam;   
+    current_cam = cam; 
+}
+
+float RenderingSystem::GetFrameDifference()
+{
+    return GetFrameTime();
 }

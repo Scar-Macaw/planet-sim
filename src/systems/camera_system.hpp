@@ -6,7 +6,7 @@
 
 class CameraSystem : public System {
 public:
-    void Update(double delta, Coordinator* coordinator);
+    void Update(float delta, Coordinator* coordinator);
     ActiveCamera GetActiveCamera();
 private:
     ActiveCamera current_cam;
