@@ -9,10 +9,20 @@ class SystemManager
 {
 public:
     template<typename T>
-    std::shared_ptr<T> RegisterSystem();
+    std::shared_ptr<T> RegisterSystem(){
+        const char* typeName = typeid(T).name();
+
+        auto system = std::make_shared<T>();
+        systems.insert({typeName, system});
+        return system;
+    }
 
     template<typename T>
-    void SetSignature(Signature sig);
+    void SetSignature(Signature sig){
+        const char* typeName = typeid(T).name();
+
+        signatures.insert({typeName, sig});
+    }
 
     void EntityRemoved(Entity e);
 

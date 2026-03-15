@@ -2,7 +2,7 @@
 #include "render_structs.hpp"
 #include <string>
 #include <unordered_map>
-
+/*
 //Desired FPS
 const int TARGET_FPS = 60;
 
@@ -24,4 +24,4 @@ class Renderer {
         //void SetCamera(Cam& camera);
 
         bool IsRunning();
-};
+};*/

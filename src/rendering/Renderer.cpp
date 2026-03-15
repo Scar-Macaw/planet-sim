@@ -1,6 +1,6 @@
 #include "renderer.hpp"
 #include "raylib.h"
-
+/*
 std::unordered_map<int, Model> models = {};
 int ID_count = 0;
 
@@ -42,7 +42,7 @@ RenderModel Renderer::CreateRenderModel(const char* path) {
     position.y = pos.y;
     position.z = pos.z;
     DrawModel(model, position, 1.0f, WHITE);
-}*/
+}
 
 void Renderer::RemoveRenderModel(RenderModel render_model) {
     
@@ -57,8 +57,8 @@ void Renderer::RemoveRenderModel(RenderModel render_model) {
     rlcam.projection = CameraProjection::CAMERA_PERSPECTIVE;
 
     BeginMode3D(rlcam);
-}*/
+}
 
 bool Renderer::IsRunning() {
     return !WindowShouldClose();
-}
+}*/

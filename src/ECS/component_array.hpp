@@ -11,11 +11,46 @@ public:
 
 template<typename T>
 class ComponentArray : public IComponentArray {
+
 public:
-    void InsertData(Entity e, T component);
-    void RemoveData(Entity e);
-    T& GetData(Entity e);
-    void EntityRemoved(Entity e) override;
+
+    void InsertData(Entity e, T component)
+    {
+        size_t new_index = component_size;
+        entityToIndexMap[e] = new_index;
+        indexToEntityMap[new_index] = e;
+        componentArray[new_index] = component;
+        component_size++;
+    }
+
+    void RemoveData(Entity e)
+    {
+        size_t indexOfRemovedEntity = entityToIndexMap[e];
+        size_t indexOfLastElement = component_size - 1;
+        componentArray[indexOfRemovedEntity] = componentArray[indexOfLastElement];
+
+        Entity entityOfLastElement = indexToEntityMap[indexOfLastElement];
+        entityToIndexMap[entityOfLastElement] = indexOfRemovedEntity;
+        indexToEntityMap[indexOfRemovedEntity] = entityOfLastElement;
+
+        entityToIndexMap.erase(e);
+        indexToEntityMap.erase(indexOfLastElement);
+
+        component_size--;
+    }
+
+    T& GetData(Entity e)
+    {
+        return componentArray[entityToIndexMap[e]];  
+    }
+
+    void EntityRemoved(Entity e) 
+    {
+        if (entityToIndexMap.find(e) != entityToIndexMap.end())
+            {
+                RemoveData(e);
+            }
+    }
 private:
     std::array<T, MAX_ENTITIES> componentArray;
 

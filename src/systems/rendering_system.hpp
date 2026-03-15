@@ -1,0 +1,25 @@
+#pragma once
+
+#include "../ecs/coordinator.hpp"
+
+#include "../components/transform_component.hpp"
+#include "../components/rendering_component.hpp"
+
+#include "raylib.h"
+
+#include "../rendering/render_structs.hpp"
+
+class RenderingSystem : public System 
+{
+public:
+    void Init();
+
+    void Shutdown();
+
+    void Update(double delta, Coordinator* coordinator);
+    bool is_running();
+
+    void SetActiveCamera(ActiveCamera cam);
+private:
+    ActiveCamera current_cam;
+};

@@ -1,12 +1,10 @@
 #pragma once
 #include <vector>
 
-//Vector 2 with integers for screen positions
-struct Vec2i {
-    int x, y;
-};
+#include "../components/transform_component.hpp"
+#include "../components/camera_component.hpp"
 
-//Mesh
-struct RenderModel {
-    int id = 0;
+struct ActiveCamera {
+    TransformComponent transform;
+    CameraComponent camera;
 };

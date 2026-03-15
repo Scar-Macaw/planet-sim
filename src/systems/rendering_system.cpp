@@ -1,32 +1,59 @@
-#include "../ecs/coordinator.cpp"
+#include "rendering_system.hpp"
 
-#include "../components/transform_component.hpp"
-#include "../components/rendering_component.hpp"
+void RenderingSystem::Init()
+{
+    SetTargetFPS(60);
+    InitWindow(800, 600, "Simulation");
+}
 
-#include "camera_system.cpp"
+void RenderingSystem::Shutdown()
+{
+    CloseWindow();
+}
 
-#include "raylib.h"
+float test = 0.0f;
 
-class RenderingSystem : public System{
-public:
-    void Init()
+void RenderingSystem::Update(double delta, Coordinator* coordinator)
+{
+    ClearBackground(BLACK);
+
+    Camera3D cam    = {};
+    cam.position    = {current_cam.transform.x, current_cam.transform.y, current_cam.transform.z};
+    cam.target      = {current_cam.camera.target_x, current_cam.camera.target_y, current_cam.camera.target_z};
+    cam.fovy        = current_cam.camera.fovy;
+    cam.up          = {0.0f, 1.0f, 0.0f};
+    cam.projection  = CAMERA_PERSPECTIVE;
+    
+    test += 0.01f;
+
+    BeginDrawing();
+    BeginMode3D(cam);
+
+    for (auto const& e : entities)
     {
-        SetTargetFPS(60);
-        InitWindow(800, 800, "Simulation");
+        auto& transform = coordinator->GetComponent<TransformComponent>(e);
+        auto& render    = coordinator->GetComponent<RenderingComponent>(e);
+
+        transform.x = cos(test) * 10.0f;
+        transform.z = sin(test) * 10.0f;
+
+        Vector3 mesh_pos = {transform.x, transform.y, transform.z};
+
+        DrawSphere(mesh_pos, 1, BLUE);
     }
 
-    void Shutdown()
-    {
-        CloseWindow();
-    }
+    DrawGrid(20, 2.0f);
 
-    void Update(Coordinator* coordinator, CameraSystem* camera_system)
-    {
-        
-    }
+    EndMode3D();
+    EndDrawing();
+}
 
-    bool is_running()
-    {
-        return !WindowShouldClose();
-    }
-};
+bool RenderingSystem::is_running()
+{
+    return !WindowShouldClose();
+}
+
+void RenderingSystem::SetActiveCamera(ActiveCamera cam)
+{
+    current_cam = cam;   
+}
