@@ -48,8 +48,6 @@ void RenderingSystem::Update(float delta, Coordinator* coordinator)
         DrawSphere(mesh_pos, 0.1f, WHITE);
     }
 
-    DrawGrid(20, 2.0f);
-
 }
 
 bool RenderingSystem::is_running()

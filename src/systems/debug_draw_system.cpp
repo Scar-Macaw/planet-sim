@@ -37,6 +37,8 @@ void DebugDrawSystem::Update(float delta, Coordinator* coordinator)
         {transform.x, transform.y, transform.z + velocity.z},
         BLUE
         );
+        
+        DrawGrid(40, 1.0f);
     }
 
 }
