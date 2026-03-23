@@ -13,5 +13,5 @@ private:
     const double SENSITIVITY = 1.75;
     const double SPEED = 7.0;
 
-    const double PITCH_CLAMP = 1.0;
+    const double PITCH_CLAMP = PI/2 - 0.1;
 };

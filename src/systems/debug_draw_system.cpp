@@ -38,7 +38,7 @@ void DebugDrawSystem::Update(float delta, Coordinator* coordinator)
         BLUE
         );
         
-        DrawGrid(40, 1.0f);
+        DrawGrid(20, 4.0f);
     }
 
 }

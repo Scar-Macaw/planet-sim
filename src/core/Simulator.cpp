@@ -49,7 +49,7 @@ void Simulator::begin_simulation() {
     for(int i = 0; i < 50; i++)
     {
         Entity sphere_entity = coordinator.CreateEntity();
-        TransformComponent sphere_transform = {float(rand()%40) - 20.0f, float(rand()%5), float(rand()%40) - 20.0f};
+        TransformComponent sphere_transform = {float(rand()%40) - 20.0f, float(rand()%40), float(rand()%40) - 20.0f};
         VelocityComponent  sphere_velocity  = {(float(rand()%100) - 50.0f)/100, (float(rand()%100) - 50.0f)/100, (float(rand()%100) - 50.0f)/100};
         RenderingComponent sphere_rendering = {};
         coordinator.AddComponent(sphere_entity, sphere_transform);
