@@ -41,21 +41,26 @@ void Simulator::begin_simulation() {
     TransformComponent camera_transform = {-5.0f, 1.0f, 0.0f};
     CameraComponent camera_settings = {};
     camera_settings.fovy = 70.0f;
-
     coordinator.AddComponent(camera_entity, camera_transform);
     coordinator.AddComponent(camera_entity, camera_settings);
 
-    //Create sphere entities
-    for(int i = 0; i < 50; i++)
-    {
-        Entity sphere_entity = coordinator.CreateEntity();
-        TransformComponent sphere_transform = {float(rand()%40) - 20.0f, float(rand()%40), float(rand()%40) - 20.0f};
-        PhysicsComponent  sphere_velocity  = {(float(rand()%100) - 50.0f)/100, (float(rand()%100) - 50.0f)/100, (float(rand()%100) - 50.0f)/100};
-        RenderingComponent sphere_rendering = {};
-        coordinator.AddComponent(sphere_entity, sphere_transform);
-        coordinator.AddComponent(sphere_entity, sphere_velocity);
-        coordinator.AddComponent(sphere_entity, sphere_rendering);
-    }
+    //Create Body 1
+    Entity body1 = coordinator.CreateEntity();
+    TransformComponent body1_transform = {};
+    RenderingComponent body1_rendering = {};
+    PhysicsComponent   body1_physics   = {5.0f};
+    coordinator.AddComponent(body1, body1_transform);
+    coordinator.AddComponent(body1, body1_rendering);
+    coordinator.AddComponent(body1, body1_physics);
+
+    //Create Body 2
+    Entity body2 = coordinator.CreateEntity();
+    TransformComponent body2_transform = {0.0f, 5.0f, 0.0f};
+    RenderingComponent body2_rendering = {};
+    PhysicsComponent   body2_physics   = {1.0f};
+    coordinator.AddComponent(body2, body2_transform);
+    coordinator.AddComponent(body2, body2_rendering);
+    coordinator.AddComponent(body2, body2_physics);
 
     rendering_system->Init();
 
