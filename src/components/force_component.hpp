@@ -1,6 +1,6 @@
 #pragma once
 
-struct VelocityComponent
+struct ForceComponent
 {
     float x = 0.0f;
     float y = 0.0f;
