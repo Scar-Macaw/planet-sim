@@ -3,7 +3,7 @@
 #include "../ecs/coordinator.hpp"
 
 #include "../components/transform_component.hpp"
-#include "../components/velocity_component.hpp"
+#include "../components/physics_component.hpp"
 
 #include "raylib.h"
 

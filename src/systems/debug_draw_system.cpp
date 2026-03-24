@@ -12,29 +12,29 @@ void DebugDrawSystem::Update(float delta, Coordinator* coordinator)
     for (auto const& e : entities)
     {
         auto& transform = coordinator->GetComponent<TransformComponent>(e);
-        auto& velocity  = coordinator->GetComponent<VelocityComponent>(e);
+        auto& physics  = coordinator->GetComponent<PhysicsComponent>(e);
         
         DrawLine3D(
         {transform.x, transform.y, transform.z},
-        {transform.x + velocity.x, transform.y + velocity.y, transform.z + velocity.z},
+        {transform.x + physics.force_x, transform.y + physics.force_y, transform.z + physics.force_z},
         WHITE
         );
 
         DrawLine3D(
         {transform.x, transform.y, transform.z},
-        {transform.x + velocity.x, transform.y, transform.z},
+        {transform.x + physics.force_x, transform.y, transform.z},
         RED
         );
 
         DrawLine3D(
         {transform.x, transform.y, transform.z},
-        {transform.x, transform.y + velocity.y, transform.z},
+        {transform.x, transform.y + physics.force_y, transform.z},
         GREEN
         );
         
         DrawLine3D(
         {transform.x, transform.y, transform.z},
-        {transform.x, transform.y, transform.z + velocity.z},
+        {transform.x, transform.y, transform.z + physics.force_z},
         BLUE
         );
         

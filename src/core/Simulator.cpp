@@ -13,13 +13,13 @@ void Simulator::begin_simulation() {
     coordinator.RegisterComponent<TransformComponent>();
     coordinator.RegisterComponent<RenderingComponent>();
     coordinator.RegisterComponent<CameraComponent>();
-    coordinator.RegisterComponent<VelocityComponent>();
+    coordinator.RegisterComponent<PhysicsComponent>();
 
     //Register debug draw system
     auto debug_draw_system = coordinator.RegisterSystem<DebugDrawSystem>();
     Signature debug_sig;
     debug_sig.set(coordinator.GetComponentType<TransformComponent>());
-    debug_sig.set(coordinator.GetComponentType<VelocityComponent>());
+    debug_sig.set(coordinator.GetComponentType<PhysicsComponent>());
     coordinator.SetSystemSignature<DebugDrawSystem>(debug_sig);
     
     //Register the rendering system
@@ -50,7 +50,7 @@ void Simulator::begin_simulation() {
     {
         Entity sphere_entity = coordinator.CreateEntity();
         TransformComponent sphere_transform = {float(rand()%40) - 20.0f, float(rand()%40), float(rand()%40) - 20.0f};
-        VelocityComponent  sphere_velocity  = {(float(rand()%100) - 50.0f)/100, (float(rand()%100) - 50.0f)/100, (float(rand()%100) - 50.0f)/100};
+        PhysicsComponent  sphere_velocity  = {(float(rand()%100) - 50.0f)/100, (float(rand()%100) - 50.0f)/100, (float(rand()%100) - 50.0f)/100};
         RenderingComponent sphere_rendering = {};
         coordinator.AddComponent(sphere_entity, sphere_transform);
         coordinator.AddComponent(sphere_entity, sphere_velocity);
