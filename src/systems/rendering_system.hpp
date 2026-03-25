@@ -7,7 +7,8 @@
 
 #include "raylib.h"
 
-#include "../rendering/render_structs.hpp"
+#include <unordered_map>
+#include <queue>
 
 class RenderingSystem : public System 
 {
@@ -25,6 +26,14 @@ public:
     void SetActiveCamera(ActiveCamera cam);
 
     float GetFrameDifference();
+
+    ModelID CreateModel(const char* path);
+
+    void RemoveModel(ModelID);
+
 private:
     ActiveCamera current_cam;
+    std::unordered_map<ModelID, Model> models = {};
+    std::queue<ModelID> avaliableIDs = {};
+    std::uint32_t model_count = 0;
 };

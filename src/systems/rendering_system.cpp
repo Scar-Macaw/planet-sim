@@ -2,6 +2,10 @@
 
 void RenderingSystem::Init()
 {
+    for(int i = 0; i < MAX_MODELS; i++){
+        avaliableIDs.push(i);
+    }
+
     SetTargetFPS(30);
     InitWindow(800, 600, "Simulation");
 }
@@ -45,7 +49,7 @@ void RenderingSystem::Update(float delta, Coordinator* coordinator)
 
         Vector3 mesh_pos = {transform.x, transform.y, transform.z};
 
-        DrawSphere(mesh_pos, 0.1f, WHITE);
+        DrawModel(models[render.mesh_id], mesh_pos, render.scale, WHITE);
     }
 
 }
@@ -63,4 +67,21 @@ void RenderingSystem::SetActiveCamera(ActiveCamera cam)
 float RenderingSystem::GetFrameDifference()
 {
     return GetFrameTime();
+}
+
+ModelID RenderingSystem::CreateModel(const char* path)
+{
+    ModelID m = avaliableIDs.front();
+    avaliableIDs.pop();
+    model_count++;
+
+    models[m] = LoadModel(path);
+
+    return m;
+}
+
+void RenderingSystem::RemoveModel(ModelID id)
+{
+    avaliableIDs.push(id);
+    model_count--;
 }

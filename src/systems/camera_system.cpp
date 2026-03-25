@@ -35,13 +35,13 @@ void CameraSystem::Update(float delta, Coordinator* coordinator)
 
         if (IsKeyDown(KEY_W))
         {
-            transform.x += dir_x * SPEED * delta;
-            transform.z += dir_z * SPEED * delta;
+            transform.x += cos(cam.yaw) * SPEED * delta;
+            transform.z += sin(cam.yaw) * SPEED * delta;
         }
         if (IsKeyDown(KEY_S))
         {
-            transform.x -= dir_x * SPEED * delta;
-            transform.z -= dir_z * SPEED * delta;
+            transform.x -= cos(cam.yaw) * SPEED * delta;
+            transform.z -= sin(cam.yaw) * SPEED * delta;
         }
         if (IsKeyDown(KEY_D))
         {

@@ -14,6 +14,7 @@ void Simulator::begin_simulation() {
     coordinator.RegisterComponent<RenderingComponent>();
     coordinator.RegisterComponent<CameraComponent>();
     coordinator.RegisterComponent<PhysicsComponent>();
+    coordinator.RegisterComponent<CollisionComponent>();
 
     //Register debug draw system
     auto debug_draw_system = coordinator.RegisterSystem<DebugDrawSystem>();
@@ -28,6 +29,13 @@ void Simulator::begin_simulation() {
     rendering_sig.set(coordinator.GetComponentType<TransformComponent>());
     rendering_sig.set(coordinator.GetComponentType<RenderingComponent>());
     coordinator.SetSystemSignature<RenderingSystem>(rendering_sig);
+
+    //Register mesh generator system
+    auto mesh_generator_system = coordinator.RegisterSystem<MeshGeneratorSystem>();
+    Signature mesh_generator_sig;
+    rendering_sig.set(coordinator.GetComponentType<RenderingComponent>());
+    rendering_sig.set(coordinator.GetComponentType<CollisionComponent>());
+    coordinator.SetSystemSignature<RenderingSystem>(mesh_generator_sig);
 
     //Register the camera system
     auto camera_system = coordinator.RegisterSystem<CameraSystem>();
@@ -48,21 +56,27 @@ void Simulator::begin_simulation() {
     Entity body1 = coordinator.CreateEntity();
     TransformComponent body1_transform = {};
     RenderingComponent body1_rendering = {};
-    PhysicsComponent   body1_physics   = {5.0f};
+    PhysicsComponent   body1_physics   = {0.5f};
+    CollisionComponent body1_collision = {0.5f};
     coordinator.AddComponent(body1, body1_transform);
     coordinator.AddComponent(body1, body1_rendering);
     coordinator.AddComponent(body1, body1_physics);
+    coordinator.AddComponent(body1, body1_collision);
 
     //Create Body 2
     Entity body2 = coordinator.CreateEntity();
     TransformComponent body2_transform = {0.0f, 5.0f, 0.0f};
     RenderingComponent body2_rendering = {};
-    PhysicsComponent   body2_physics   = {1.0f};
+    PhysicsComponent   body2_physics   = {0.1f};
+    CollisionComponent body2_collision = {0.1f};
     coordinator.AddComponent(body2, body2_transform);
     coordinator.AddComponent(body2, body2_rendering);
     coordinator.AddComponent(body2, body2_physics);
+    coordinator.AddComponent(body2, body2_collision);
 
     rendering_system->Init();
+
+    mesh_generator_system->SetMeshes(rendering_system.get(), &coordinator);
 
     auto last = std::chrono::high_resolution_clock::now();
 
@@ -73,6 +87,7 @@ void Simulator::begin_simulation() {
 
         //Stuff for physics goes here
 
+        
 
         //Stuff for rendering below
 
