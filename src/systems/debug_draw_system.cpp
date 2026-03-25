@@ -16,25 +16,25 @@ void DebugDrawSystem::Update(float delta, Coordinator* coordinator)
         
         DrawLine3D(
         {transform.x, transform.y, transform.z},
-        {transform.x + physics.force_x, transform.y + physics.force_y, transform.z + physics.force_z},
+        {transform.x + physics.vel_x, transform.y + physics.vel_y, transform.z + physics.vel_z},
         WHITE
         );
 
         DrawLine3D(
         {transform.x, transform.y, transform.z},
-        {transform.x + physics.force_x, transform.y, transform.z},
+        {transform.x + physics.vel_x, transform.y, transform.z},
         RED
         );
 
         DrawLine3D(
         {transform.x, transform.y, transform.z},
-        {transform.x, transform.y + physics.force_y, transform.z},
+        {transform.x, transform.y + physics.vel_y, transform.z},
         GREEN
         );
         
         DrawLine3D(
         {transform.x, transform.y, transform.z},
-        {transform.x, transform.y, transform.z + physics.force_z},
+        {transform.x, transform.y, transform.z + physics.vel_z},
         BLUE
         );
         
