@@ -54,7 +54,7 @@ void Simulator::begin_simulation() {
 
     //Create Body 1
     Entity body1 = coordinator.CreateEntity();
-    TransformComponent body1_transform = {};
+    TransformComponent body1_transform = {0.0f, 0.5f, 0.0f };
     RenderingComponent body1_rendering = {};
     PhysicsComponent   body1_physics   = {0.5f};
     CollisionComponent body1_collision = {0.5f};

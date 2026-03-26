@@ -7,7 +7,7 @@ void MeshGeneratorSystem::SetMeshes(RenderingSystem* render_system, Coordinator*
         auto& render    = coordinator->GetComponent<RenderingComponent>(e);
         auto& collision = coordinator->GetComponent<CollisionComponent>(e);
 
-        render.mesh_id = render_system->CreateModel("../assets/rendering_test/sphere.obj");
+        render.mesh_id = render_system->CreateModel("../assets/rendering_test/cow.obj");
         render.scale = collision.radius;
     }
 }
